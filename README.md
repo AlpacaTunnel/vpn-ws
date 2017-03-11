@@ -46,6 +46,13 @@ Just run (remember to use 'gmake' on FreeBSD instead of 'make')
 make
 ```
 
+or make with optimization flag -O3
+
+```sh
+make CFLAGS="-O3"
+```
+
+
 after having cloned the repository. If all goes well you will end with a binary named vpn-ws (the server) and another named vpn-ws-client (the client)
 
 You can eventually build server or client selectively with
