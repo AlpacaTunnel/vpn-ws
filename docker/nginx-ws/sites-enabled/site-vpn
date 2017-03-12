@@ -1,0 +1,36 @@
+server {
+	# listen 80 default_server;
+	# listen [::]:80 default_server;
+	listen 443 ssl;
+
+	root /var/www/html;
+
+	# Add index.php to the list if you are using PHP
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+	ssl_certificate /etc/nginx/private/server.crt;
+	ssl_certificate_key /etc/nginx/private/server.key;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
+	}
+
+	location /vpn {
+		include uwsgi_params;
+		uwsgi_pass unix:/tmp/vpn-ws/vpn.sock;
+		auth_basic "Restricted Content";
+		auth_basic_user_file /etc/nginx/private/htpasswd;
+	}
+	
+	# location /vpn_admin {
+	# 	include uwsgi_params;
+	# 	uwsgi_modifier1 1;
+	# 	uwsgi_pass unix:/run/vpn.sock;
+	# 	auth_basic "VPN ADMIN";
+	# 	auth_basic_user_file /etc/nginx/private/htpasswd;
+	# }
+}
+
