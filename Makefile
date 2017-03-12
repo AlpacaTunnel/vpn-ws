@@ -38,5 +38,17 @@ osxpkg: vpn-ws vpn-ws-client
 	cp vpn-ws vpn-ws-client dist/usr/bin
 	pkgbuild --root dist --identifier it.unbit.vpn-ws vpn-ws-$(VERSION)-osx.pkg
 
+install_monitor:
+	cp -n clients/vpn-monitor.json /usr/local/etc/
+	cp -n vpn-ws-client /usr/local/bin/
+	cp clients/vpn-monitor.py /usr/local/bin/
+	cp clients/vpn-monitor.service /etc/systemd/system/
+	systemctl enable vpn-monitor.service
+
+uninstall_monitor:
+	systemctl disable vpn-monitor.service || :
+	rm -f /usr/local/bin/vpn-monitor.py
+	rm -f /etc/systemd/system/vpn-monitor.service
+
 clean:
 	rm -rf src/*.o vpn-ws vpn-ws-client

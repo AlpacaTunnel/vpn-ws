@@ -174,6 +174,26 @@ Once your client is connected you can assign it an ip address (or make a dhcp re
 
 The mode we are using now is the simple "switch" one, where nodes simply communicates between them like in a lan.
 
+
+The VPN Monitor
+==============
+
+Install it with:
+
+```sh
+make install_monitor
+```
+
+Then edit the configuration file `/usr/local/etc/vpn-monitor.json`.
+
+Play it with
+
+```sh
+systemctl start vpn-monitor.service
+systemctl status vpn-monitor.service
+systemctl stop vpn-monitor.service
+```
+
 Server tap and Bridge mode
 ==========================
 

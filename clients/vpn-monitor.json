@@ -1,0 +1,13 @@
+{
+    "log_level": "debug",
+    "local_routes": ["114.114.114.114", "10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"],
+    "tunnels": [
+        {
+            "name": "ws0",
+            "type": "vpn-ws",
+            "server_url": "wss://tom:password@192.168.7.21:443/vpn",
+            "server_private_ip": "10.18.1.1/24",
+            "client_private_ip": "10.18.1.2/24"
+        }
+    ]
+}

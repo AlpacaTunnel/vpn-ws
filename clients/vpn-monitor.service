@@ -1,0 +1,11 @@
+[Unit]
+Description=vpn-monitor
+After=network.target network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/vpn-monitor.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
