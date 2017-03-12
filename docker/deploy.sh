@@ -40,6 +40,7 @@ vpn_id=`docker run --privileged --cap-add=NET_ADMIN -d -v /tmp/vpn-ws/:/tmp/vpn-
 sleep 1
 docker ps -f id=$vpn_id | grep "vpn-ws"
 [ $? != 0 ] && echo "start vpn-ws failed" && \
+    docker rm -f $vpn_id && \
     cat $vpn_log && \
     exit 1
 
@@ -49,6 +50,7 @@ sleep 1
 docker ps -f id=$nginx_id | grep "nginx-ws"
 [ $? != 0 ] && echo "start nginx-ws failed" && \
     docker rm -f $vpn_id && \
+    docker rm -f $nginx_id && \
     exit 1
 
 
