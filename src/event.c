@@ -67,6 +67,16 @@ int vpn_ws_event_fd(void *events, int i) {
 	return epoll_events[i].data.fd;
 }
 
+int vpn_ws_peer_is_writing(void *events, int i, vpn_ws_fd fd) {
+	struct epoll_event *epoll_events = (struct epoll_event *) events;
+	if (epoll_events[i].events & EPOLLOUT) {
+		// Ready for write
+		vpn_ws_peer *peer = vpn_ws_conf.peers[fd];
+		peer->is_writing = 1;
+	}
+	return 0;
+}
+
 #elif defined(__FreeBSD__) || defined(__APPLE__) || defined(__OpenBSD__)
 
 #include <sys/event.h>

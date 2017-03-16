@@ -186,6 +186,8 @@ int main(int argc, char *argv[]) {
 		int i;
 		for(i=0;i<ret;i++) {
 			int fd = vpn_ws_event_fd(events, i);
+			vpn_ws_peer_is_writing(events, i, fd);
+
 			// a new connection ?
 			if (fd == server_fd) {
 				vpn_ws_peer_accept(event_queue, server_fd);

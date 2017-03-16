@@ -148,6 +148,7 @@ int vpn_ws_event_add_read(int, vpn_ws_fd);
 int vpn_ws_event_wait(int, void *);
 void *vpn_ws_event_events(int);
 int vpn_ws_event_fd(void *, int);
+int vpn_ws_peer_is_writing(void *events, int i, vpn_ws_fd fd);
 int vpn_ws_event_read_to_write(int, vpn_ws_fd);
 int vpn_ws_event_write_to_read(int, vpn_ws_fd);
 
